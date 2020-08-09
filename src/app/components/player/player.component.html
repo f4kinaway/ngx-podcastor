@@ -1,0 +1,47 @@
+<div *ngIf="currentFile" class="container">
+  <!-- <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{currentFile.file.title}}</mat-card-title>
+    </mat-card-header>
+  </mat-card> -->
+  <div class="media-content" fxShow.xs="true" fxShow="false">
+    <img class="media-img" src="{{currentFile.file.thumbnail || currentPodcast?.image }}" alt="Episode thumbnail">
+  </div>
+  <div class="media-footer">
+    <mat-toolbar class="toolbar">
+      <mat-toolbar-row class="toolbar-title">
+        <div class="media-animation-container ellipsis">
+          <div class="media-animation" fxShow.xs="true" fxShow="false">
+            <span class="media-title-1">{{currentFile.file.title}}</span>
+            <span class="media-title-2">{{currentFile.file.title}}</span>
+            <!-- <span>{{currentFile.file.title}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{currentFile.file.title}}</span> -->
+          </div>
+          <div fxShow.xs="false" fxShow="true" class="text-center">{{currentFile.file.title}}</div>
+        </div>
+      </mat-toolbar-row>
+      <mat-toolbar-row class="toolbar-auto">
+        <span class="media-author ellipsis">{{currentPodcast.author}} - {{currentFile.file.pubDate | date:'dd/MM/yyyy'}}</span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span class="media-time">{{ state?.readableCurrentTime }}</span>
+        <mat-slider class="time-slider" min="0" [max]="state?.duration" step="1" [value]="state?.currentTime"
+          (input)="onSliderChangeEnd($event)" [disabled]="state?.error || currentFile.index === undefined"></mat-slider>
+        <span class="media-time">{{ state?.readableDuration }}</span>
+      </mat-toolbar-row>
+      <mat-toolbar-row class="media-action-bar">
+        <button mat-button [disabled]="isFirstPlaying()" (click)="previous()">
+          <mat-icon mat-list-icon>skip_previous</mat-icon>
+        </button>
+        <button mat-button (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing">
+          <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+        </button>
+        <button mat-button (click)="pause()" *ngIf="state?.playing">
+          <mat-icon mat-list-icon>pause</mat-icon>
+        </button>
+        <button mat-button [disabled]="isLastPlaying()" (click)="next()">
+          <mat-icon mat-list-icon>skip_next</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+</div>

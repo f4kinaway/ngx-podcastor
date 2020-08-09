@@ -1,0 +1,41 @@
+<mat-card class="example-card">
+  <!-- <mat-card-header> -->
+  <!-- <div class="custom-content"> -->
+    <!-- <img mat-card-avatar src="{{episode.thumbnail || feed?.image}}" alt="Episode image" class="card-avatar"> -->
+    <mat-card-title class="episode-title ellipsis">{{episode.title}}</mat-card-title>
+    <!-- <mat-card-subtitle>{{episode.enclosure.duration | duration}}</mat-card-subtitle> -->
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Episode menu" class="card-options">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button *ngIf="!episode.completed" mat-menu-item (click)="completeEpisode(feed, index)">
+        <span>Mark complete</span>
+      </button>
+      <button *ngIf="episode.completed" mat-menu-item (click)="uncompleteEpisode(feed, index)">
+        <span>Mark not complete</span>
+      </button>
+    </mat-menu>
+  <!-- </div> -->
+  <!-- </mat-card-header> -->
+  <mat-card-content>
+    <div class="custom-content">
+      <div *ngIf="episode.completed" class="card-completed"></div>
+      <mat-icon *ngIf="episode.completed" class="card-completed-icon">check_circle</mat-icon>
+      <img mat-card-avatar src="{{episode.thumbnail || feed?.image}}" alt="Episode image" class="card-avatar">
+      <p class="ellipsis-3 card-description">{{episode.description}}</p>
+    </div>  
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="playEpisode(feed, index)">
+      <mat-icon class="button-icon">play_circle_filled</mat-icon>PLAY
+    </button>
+    <button *ngIf="!episode.downloaded" mat-raised-button color="primary" (click)="downloadEpisode(feed, index)">
+      <mat-icon class="button-icon">archive</mat-icon>DOWNLOAD
+    </button>
+    <button *ngIf="episode.downloaded" mat-raised-button color="primary" (click)="deleteEpisode(feed, index)">
+      <mat-icon class="button-icon">cancel</mat-icon>DELETE
+    </button>
+    <div class="card-duration">{{episode.enclosure.duration | duration}}</div>
+  </mat-card-actions>
+  <mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress" class="progress-bar"></mat-progress-bar>
+</mat-card>

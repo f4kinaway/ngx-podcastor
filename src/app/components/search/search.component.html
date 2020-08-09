@@ -1,0 +1,39 @@
+<form class="search">
+  <!-- <input type="text" placeholder="Search" name="term" [(ngModel)]="term">
+  <button type="submit">Search</button> -->
+  <mat-form-field appearance="outline">
+    <!-- <mat-label>Search</mat-label> -->
+    <input matInput placeholder="Search" name="term" [(ngModel)]="term">
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <!-- <mat-hint>Hint</mat-hint> -->
+    <button matSuffix mat-button mat-flat-button color="primary" (click)="submitSearch()">SEARCH</button>
+  </mat-form-field>
+</form>
+<!-- <div *ngIf="!results">
+  <p>Search for something!</p>
+</div> -->
+<div *ngIf="results?.resultCount == 0">
+  <p>Couldn't find results</p>
+</div>
+<div *ngIf="results?.resultCount" class="results-container">
+  <div *ngFor="let podcast of results.results">
+    <!-- <a [routerLink]="['/podcast']" [queryParams]="{ url: res.feedUrl}">{{ res.trackName }} - {{ res.artistName }}</a> -->
+    <mat-card class="example-card" [routerLink]="['/podcast']" [queryParams]="{ url: podcast.feedUrl}">
+      <mat-card-header>
+        <img mat-card-avatar src="{{podcast.artworkUrl60}}" alt="Podcast image">
+        <mat-card-title>{{podcast.trackName}}</mat-card-title>
+        <mat-card-subtitle>{{podcast.artistName}}</mat-card-subtitle>
+      </mat-card-header>
+      <!-- <mat-card-content> -->
+        <!-- <p>{{podcast.trackCount}} Episodes</p> -->
+        <!-- <mat-chip-list><mat-chip color="primary" selected>{{podcast.trackCount}} Episodes</mat-chip></mat-chip-list> -->
+      <!-- </mat-card-content> -->
+      <!-- <mat-card-footer>
+        <mat-chip-list><mat-chip color="primary" selected>{{item.enclosure.duration | duration}}</mat-chip></mat-chip-list>
+      </mat-card-footer> -->
+      <!-- <mat-card-actions class="button-row">
+        <button mat-raised-button color="primary">SUBSCRIBE</button>
+      </mat-card-actions> -->
+    </mat-card>
+  </div>
+</div>

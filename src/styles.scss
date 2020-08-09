@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/purple-green.css';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mat-button, .mat-icon-button, .mat-stroked-button {
+  color: inherit;
+  background: transparent;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: -.25em !important;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-toolbar-single-row {
+  padding: 0 5px !important;
+}
+
+.button-icon {
+  margin: 0 4px 2px 0;
+}
+
+.mat-card-content {
+  margin: .5rem 0 !important;
+}
+
+.mat-card-subtitle {
+  margin-bottom: 12px !important;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ellipsis-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

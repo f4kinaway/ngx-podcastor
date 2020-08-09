@@ -1,0 +1,128 @@
+.container {
+  .main-toolbar {
+    .spacer {
+      flex: 1 1 auto;
+    }
+    .toolbar-btn {
+      font-size: 16px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    .logo {
+      margin: 2.5rem;
+      text-align: center;
+      font-size: 24px;
+      color: #3f51b5;
+      .mat-icon {
+        height: 160px !important;
+        width: 160px !important;
+        font-size: 160px !important;
+      }
+    }
+  }
+
+  .media-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .time-slider {
+      width: 100% !important;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    .media-action-bar {
+      width: 100%;
+      padding: 2.5rem;
+      justify-content: center;
+      .mat-icon {
+        height: 48px !important;
+        width: 48px !important;
+        font-size: 48px !important;
+      }
+    }
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.media-content {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.media-img {
+  display: flex;
+  width: 100%;
+}
+
+.media-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  background: transparent;
+}
+
+.toolbar-title {
+  height: auto;
+  justify-content: center;
+}
+
+.toolbar-auto {
+  height: auto;
+}
+
+.media-author {
+  font-size: 1rem;
+  color: lightgrey;
+  text-align: center;
+  width: 100%;
+}
+
+.media-time {
+  font-size: 1rem;
+  color: lightgrey;
+}
+
+.media-animation-container {
+  // padding: 0 1.5rem;
+  width: 90%;
+}
+
+.media-animation {
+  display: inline-block;
+  animation: 20s slide;
+  animation-delay: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.media-title-2 {
+  margin: 0 0 0 2.5rem
+}
+
+@keyframes slide {
+  from {
+    // margin-left: 0%;
+    transform:translateX(0);
+  }
+  to {
+    // margin-left: -500px;
+    // transform:translateX(calc(-200% - 2.5rem));
+    transform:translateX(calc(((100% - 2.5rem)/2*(-1)) - 2.5rem));
+  }
+}
+
+.text-center {
+  text-align: center;
+}

@@ -1,0 +1,83 @@
+.example-card {
+  max-width: 100%;
+  margin: 1rem;
+}
+
+.mat-card-actions {
+  margin: 1rem 0 0 0 !important;
+  padding: 0 !important;
+  position: relative;
+}
+
+.episode-title {
+  font-size: 16px;
+  margin: 0 1rem 0 0;
+}
+
+.card-options {
+  position: absolute;
+  top: 5px;
+  right: 0;
+}
+
+.card-avatar {
+  border-radius: 0 !important;
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.card-completed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  // background-color: green;
+  // box-shadow: 0 0 3px 2px rgba(0,0,0,0.8);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 32px 32px 0 0;
+  border-color: #7b1fa2 transparent transparent transparent;
+}
+
+.card-completed-icon {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  font-size: 16px;
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.progress-bar ::ng-deep .mat-progress-bar-fill::after {
+  background-color: #7b1fa2;
+}
+
+.progress-bar ::ng-deep .mat-progress-bar-buffer {
+  background: #212121;
+}
+
+.mat-card-subtitle {
+  margin-bottom: 0px !important;
+}
+
+.custom-content {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.card-description {
+  margin: 0 0 0 .5rem;
+}
+
+.card-duration {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  font-size: 12px;
+}

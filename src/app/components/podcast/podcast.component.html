@@ -1,0 +1,38 @@
+<ng-container *ngIf="feed">
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <img mat-card-avatar src="{{this.feed?.image}}" alt="Podcast image" class="card-main-avatar">
+      <mat-card-title>{{this.feed?.title}}</mat-card-title>
+      <!-- <mat-card-subtitle>{{this.feed?.author}} - {{this.feed?.episodes?.length}} Episodes</mat-card-subtitle> -->
+      <mat-card-subtitle>{{this.feed?.author}}</mat-card-subtitle>
+      <mat-card-subtitle>{{this.feed?.episodes?.length}} Episodes</mat-card-subtitle>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Podcast menu" class="card-options">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="completeAllEpisodes(feed)">
+          <span>Mark all complete</span>
+        </button>
+      </mat-menu>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{this.feed?.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="button-row">
+      <button *ngIf="!feed?.subscribed" mat-raised-button color="primary"
+        (click)="addPodcast(this.feed)">SUBSCRIBE</button>
+      <button *ngIf="feed?.subscribed" mat-raised-button color="primary" (click)="updatePodcast(this.feed)">
+        <mat-icon class="button-icon">autorenew</mat-icon>UPDATE
+      </button>
+      <button *ngIf="feed?.subscribed" mat-stroked-button (click)="deletePodcast(this.feed)">UNSUBSCRIBE</button>
+    </mat-card-actions>
+  </mat-card>
+  
+  <mat-divider></mat-divider>
+  
+  <app-podcast-episode *ngFor="let episode of this.feed?.episodes; index as i" [feed]="feed" [episode]="episode" [index]="i"></app-podcast-episode>
+
+</ng-container>

@@ -1,0 +1,8 @@
+<mat-grid-list cols="3" rowHeight="1:1">
+  <mat-grid-tile *ngFor="let podcast of podcasts">
+    <app-podcasts-cover [podcast]="podcast"></app-podcasts-cover>
+  </mat-grid-tile>
+</mat-grid-list>
+<button class="add-podcast" mat-fab color="primary" aria-label="Add a new podcast" [routerLink]="['/search']">
+  <mat-icon>add</mat-icon>
+</button>

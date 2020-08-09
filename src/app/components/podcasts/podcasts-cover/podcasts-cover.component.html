@@ -1,0 +1,6 @@
+<!-- <mat-grid-tile *ngIf="podcast"> -->
+  <img *ngIf="podcast" width="100%" src="{{podcast.image}}" alt="Podcast image" class="podcast" [routerLink]="['/podcast']" [queryParams]="{ url: podcast.url}">
+<!-- </mat-grid-tile> -->
+<div *ngIf="notCompleted" class="card-not-completed"></div>
+<div *ngIf="notCompleted && notCompleted < 100" class="card-not-completed-number">{{notCompleted}}</div>
+<mat-icon *ngIf="notCompleted && notCompleted >= 100" class="card-not-completed-icon">add</mat-icon>
