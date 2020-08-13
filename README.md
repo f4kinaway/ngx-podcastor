@@ -1,5 +1,7 @@
 # NgxPodcastor
 
+[![Build Status](https://travis-ci.com/f4kinaway/ngx-podcastor.svg?branch=master)](https://travis-ci.com/f4kinaway/ngx-podcastor)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.4.
 
 ## Development server
