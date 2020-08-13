@@ -2,4 +2,4 @@ language: node_js
 node_js:
   - 14
 before_install: 
-  - run: sh keys.sh $(secrets.RSS_2_JSON_KEY)
+  - run: sh keys.sh $(RSS_2_JSON_KEY)
