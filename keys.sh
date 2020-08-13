@@ -1,0 +1,1 @@
+echo "export const config = { rss2jsonKey : '$1' }"  > config.ts 

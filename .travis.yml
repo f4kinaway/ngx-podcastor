@@ -1,7 +1,5 @@
 language: node_js
 node_js:
   - 14
-cache:
-  npm: false
-after_success:
-  - find . -type d \( -path "./.*" -o -path "./node_modules" \) -prune -o -name "*" -print -exec curl --ftp-create-dirs -T {} ftp://${FTP_HOST}/ --user ${FTP_USER}:${FTP_PWD} \;
+before_install: 
+  - run: sh keys.sh ${{ secrets.RSS_2_JSON_KEY }}
