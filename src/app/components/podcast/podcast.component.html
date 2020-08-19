@@ -4,7 +4,6 @@
     <mat-card-header>
       <img mat-card-avatar src="{{this.feed?.image}}" alt="Podcast image" class="card-main-avatar">
       <mat-card-title>{{this.feed?.title}}</mat-card-title>
-      <!-- <mat-card-subtitle>{{this.feed?.author}} - {{this.feed?.episodes?.length}} Episodes</mat-card-subtitle> -->
       <mat-card-subtitle>{{this.feed?.author}}</mat-card-subtitle>
       <mat-card-subtitle>{{this.feed?.episodes?.length}} Episodes</mat-card-subtitle>
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Podcast menu" class="card-options">
@@ -36,3 +35,9 @@
   <app-podcast-episode *ngFor="let episode of this.feed?.episodes; index as i" [feed]="feed" [episode]="episode" [index]="i"></app-podcast-episode>
 
 </ng-container>
+
+<div *ngIf="!feed" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+

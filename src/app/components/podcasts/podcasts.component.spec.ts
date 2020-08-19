@@ -1,9 +1,9 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { PodcastsComponent } from './podcasts.component';
+import { PodcastsService } from 'src/app/services/podcasts.service';
+import { MockPodcastsService } from '../../../../mocks/services/mock.podcasts.service';
 
 describe('PodcastsComponent', () => {
   let component: PodcastsComponent;
@@ -11,7 +11,11 @@ describe('PodcastsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PodcastsComponent ]
+      declarations: [ PodcastsComponent ],
+      providers: [
+        { provide: PodcastsService, useClass: MockPodcastsService }
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

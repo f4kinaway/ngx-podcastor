@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PodcastsService } from 'src/app/services/podcasts.service';
-import { Podcast } from 'src/app/models/podcast.model';
+// import { PodcastsService } from 'src/app/services/podcasts.service';
+// import { Podcast } from 'src/app/models/podcast.model';
+import { PodcastsService } from '../../services/podcasts.service';
+import { Podcast } from '../../models/podcast.model';
 
 @Component({
   selector: 'app-podcasts',

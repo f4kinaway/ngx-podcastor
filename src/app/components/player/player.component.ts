@@ -6,7 +6,7 @@ import { Subscription, interval, Subject } from 'rxjs';
 import { Episode } from 'src/app/models/episode.model';
 import { PodcastService } from 'src/app/services/podcast.service';
 import { Podcast } from 'src/app/models/podcast.model';
-import { StreamState } from 'src/app/interfaces/stream-state.interface';
+import { StreamState } from 'src/app/models/stream-state.model';
 import { takeUntil, first } from 'rxjs/operators';
 import { IdbService } from 'src/app/services/idb.service';
 

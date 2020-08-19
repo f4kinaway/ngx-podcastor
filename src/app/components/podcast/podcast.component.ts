@@ -15,7 +15,7 @@ export class PodcastComponent implements OnInit, OnDestroy {
   public feed!: Podcast;
   private subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private podcastService: PodcastService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private podcastService: PodcastService) { }
 
   public ngOnInit(): void {
     this.subscription.add(this.route.queryParamMap.subscribe(params => {

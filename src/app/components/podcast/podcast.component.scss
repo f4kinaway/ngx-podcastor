@@ -15,11 +15,16 @@
   right: 0;
 }
 
-// .button-row button {
-//   margin-right: 8px;
-// }
-
 .mat-card-actions {
   margin: 1rem 0 0 0 !important;
   padding: 0 !important;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 42vh;
 }

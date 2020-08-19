@@ -1,0 +1,32 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['']">
+      <mat-icon class="nav-icon">home</mat-icon>
+      <span>My Podcasts</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/search']">
+      <mat-icon class="nav-icon">add</mat-icon>
+      <span>Add new Podcast</span>
+    </button>
+    <button mat-menu-item (click)="export()">
+      <mat-icon class="nav-icon">cloud_upload</mat-icon>
+      <span>Export</span>
+    </button>
+    <input id="file-picker" #filePicker type="file" (change)="import($event)" accept=".json" hidden="true"/>
+    <button mat-menu-item (click)="filePicker.click()">
+      <mat-icon class="nav-icon">cloud_download</mat-icon>
+      <span>Import</span>
+    </button>
+    <button mat-menu-item (click)="resetPodcasts()">
+      <mat-icon class="nav-icon">delete_forever</mat-icon>
+      <span>Reset</span>
+    </button>
+  </mat-menu>
+  <span [routerLink]="['']">Podcastor</span>
+  <button mat-icon-button class="example-icon" aria-label="sync all podcasts" (click)="updateAllPodcasts()" class="sync-btn">
+    <mat-icon class="button-icon" [ngClass]="{'rotate': sync}">autorenew</mat-icon>
+  </button>
+</mat-toolbar>

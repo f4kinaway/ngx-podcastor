@@ -20,10 +20,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
+import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
 import { PodcastComponent } from './components/podcast/podcast.component';
 import { PodcastEpisodeComponent } from './components/podcast/podcast-episode/podcast-episode.component';
@@ -35,6 +37,7 @@ import { DurationPipe } from './pipes/duration.pipe';
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     SearchComponent,
     PodcastComponent,
     PodcastEpisodeComponent,
@@ -64,6 +67,7 @@ import { DurationPipe } from './pipes/duration.pipe';
     MatMenuModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     FlexLayoutModule
   ],
   providers: [],

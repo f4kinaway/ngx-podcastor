@@ -1,9 +1,9 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { SearchComponent } from './search.component';
+import { SearchService } from 'src/app/services/search.service';
+import { MockSearchService } from '../../../../mocks/services/mock.search.service';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -11,7 +11,11 @@ describe('SearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchComponent ]
+      declarations: [ SearchComponent ],
+      providers: [
+        { provide: SearchService, useClass: MockSearchService }
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
