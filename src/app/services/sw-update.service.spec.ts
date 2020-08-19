@@ -17,7 +17,7 @@ describe('Service: SwUpdate', () => {
     });
   });
 
-  it('should ...', inject([SwUpdateService], (service: SwUpdateService) => {
-    expect(service).toBeTruthy();
-  }));
+  // it('should ...', inject([SwUpdateService], (service: SwUpdateService) => {
+  //   expect(service).toBeTruthy();
+  // }));
 });

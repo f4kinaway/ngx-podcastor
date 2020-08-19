@@ -16,7 +16,7 @@ install:
   - npm install
 script: 
   - bash keys.sh $RSS_2_JSON_KEY
-  - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  - npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
   - npm run build-prod
 after_success:
   - find . -type d \( -path "./.*" -o -path "./node_modules" \) -prune -o -name "*" -print -exec curl --ftp-create-dirs -T {} ftp://$FTP_HOST/podcastor.afoucherpineau.com/ --user $FTP_USER:$FTP_PASSWORD \;
