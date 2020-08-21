@@ -12,7 +12,7 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   public searchPodcast(term: string): Observable<SearchResults> {
-    return this.http.get<SearchResults>('https://itunes.apple.com/search?entity=podcast&term=' + term);
+    return this.http.get<SearchResults>('https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?entity=podcast&term=' + term);
   }
 
 }
