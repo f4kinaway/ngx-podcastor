@@ -1,28 +1,24 @@
-import { Enclosure, PodcastEpisode } from './podcast-episode.model';
+import Parser from 'rss-parser';
 
 export class Episode {
 
   author: string;
-  categories: string[];
-  content: string;
   description: string;
+  duration: string; // HH:mm:ss
   enclosure: Enclosure;
-  guid: string;
-  link: string;
-  pubDate: Date;
+  link?: string;
+  pubDate?: Date;
   thumbnail: string;
-  title: string;
+  title?: string;
   completed: boolean;
   downloaded: Blob | null;
   progress: number;
 
   constructor(
     author: string,
-    categories: string[],
-    content: string,
     description: string,
+    duration: string,
     enclosure: Enclosure,
-    guid: string,
     link: string,
     pubDate: Date,
     thumbnail: string,
@@ -32,11 +28,9 @@ export class Episode {
     progress: number
   ) {
     this.author = author;
-    this.categories = categories;
-    this.content = content;
     this.description = description;
+    this.duration = duration;
     this.enclosure = enclosure;
-    this.guid = guid;
     this.link = link;
     this.pubDate = pubDate;
     this.thumbnail = thumbnail;
@@ -46,21 +40,25 @@ export class Episode {
     this.progress = progress;
   }
 
-  public static fromRSS(rss: PodcastEpisode): Episode {
+  public static fromRSS(rss: Parser.Item): Episode {
     return {
       author: rss.author,
-      categories: rss.categories,
-      content: rss.content,
-      description: rss.description,
-      enclosure: rss.enclosure,
-      guid: rss.guid,
+      description: rss.itunes?.summary,
+      duration: rss.itunes?.duration,
+      enclosure: rss.enclosure || { url: '', type: '', length: 0 },
       link: rss.link,
-      pubDate: rss.pubDate,
-      thumbnail: rss.thumbnail,
+      pubDate: rss.pubDate ? new Date(rss.pubDate) : undefined,
+      thumbnail: rss.itunes?.image,
       title: rss.title,
       completed: false,
       downloaded: null,
       progress: 0
     };
   }
+}
+
+export interface Enclosure {
+  url: string;
+  type?: string;
+  length?: number;
 }

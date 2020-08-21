@@ -1,13 +1,13 @@
 import { Episode } from './episode.model';
-import { PodcastFeed } from './podcast-feed.model';
+import Parser from 'rss-parser';
 
 export class Podcast {
 
   author: string;
-  description: string;
+  description?: string;
   image: string;
-  link: string;
-  title: string;
+  link?: string;
+  title?: string;
   url: string;
   episodes: Episode[];
   subscribed: boolean;
@@ -32,15 +32,15 @@ export class Podcast {
     this.subscribed = subscribed;
   }
 
-  public static fromRSS(rss: PodcastFeed): Podcast {
+  public static fromRSS(rss: Parser.Output, feedUrl: string): Podcast {
     return {
-      author: rss.feed.author,
-      description: rss.feed.description,
-      image: rss.feed.image,
-      link: rss.feed.link,
-      title: rss.feed.title,
-      url: rss.feed.url,
-      episodes: rss.items.map(item => Episode.fromRSS(item)),
+      author: rss.author || rss.itunes?.author,
+      description: rss.description,
+      image: rss.image?.url ? rss.image?.url : rss.itunes?.image || '',
+      link: rss.link ,
+      title: rss.title,
+      url: feedUrl,
+      episodes: rss.items ? rss.items.map(item => Episode.fromRSS(item)) : [],
       subscribed: false
     };
   }

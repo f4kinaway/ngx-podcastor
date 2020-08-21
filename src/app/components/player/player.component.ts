@@ -46,6 +46,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
           .subscribe(feed => {
             this.resetState();
             this.currentPodcast = feed;
+            this.files = this.currentPodcast.episodes;
             const i = JSON.parse(index);
             this.openFile(feed.episodes[i], i);
           }));
@@ -62,6 +63,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
   }
 
   public isLastPlaying(): boolean {
+    console.log(this.files);
     return this.currentFile.index === this.files.length - 1;
   }
 
@@ -92,7 +94,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
     }
 
     this.audio.pause();
-    this.audio.src = episode.downloaded ? URL.createObjectURL(episode.downloaded) : episode.enclosure.link;
+    this.audio.src = episode.downloaded ? URL.createObjectURL(episode.downloaded) : episode.enclosure.url;
     this.audio.load();
     this.audio.currentTime = episode.progress || 0;
 

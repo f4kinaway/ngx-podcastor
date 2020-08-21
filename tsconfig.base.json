@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "esModuleInterop": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -20,7 +21,24 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "paths": {
+      "timers": [
+        "node_modules/timers-browserify"
+      ],
+      "stream": [
+        "node_modules/stream-browserify"
+      ],
+      "http": [
+        "node_modules/http-browserify"
+      ],
+      "https": [
+        "node_modules/https-browserify"
+      ],
+    }
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,

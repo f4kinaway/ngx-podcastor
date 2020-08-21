@@ -16,7 +16,7 @@
       <div *ngIf="episode?.completed" class="card-completed"></div>
       <mat-icon *ngIf="episode?.completed" class="card-completed-icon">check_circle</mat-icon>
       <img mat-card-avatar src="{{episode?.thumbnail || feed?.image}}" alt="Episode image" class="card-avatar">
-      <p class="ellipsis-3 card-description">{{episode?.description}}</p>
+      <p class="ellipsis-3 card-description" [innerHTML]="episode?.description"></p>
     </div>
   </mat-card-content>
   <mat-card-actions>
@@ -29,7 +29,7 @@
     <button *ngIf="episode?.downloaded" mat-raised-button color="primary" (click)="deleteEpisode(feed, index)">
       <mat-icon class="button-icon">cancel</mat-icon>DELETE
     </button>
-    <div class="card-duration">{{episode?.enclosure?.duration || 0 | duration}}</div>
+    <div class="card-duration">{{episode?.duration || 0}}</div>
   </mat-card-actions>
   <mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress" class="progress-bar"></mat-progress-bar>
 </mat-card>

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEventType } from '@angular/common/http';
 import { Observable, from, of, zip } from 'rxjs';
+import Parser from 'rss-parser';
 
-import { PodcastFeed } from '../models/podcast-feed.model';
-import { config } from '../../../config';
 import { IdbService } from '../services/idb.service';
 import { Podcast } from '../models/podcast.model';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +25,23 @@ export class PodcastService {
   }
 
   public getPodcastFromRSS(feedUrl: string): Observable<Podcast> {
-    const url = `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}&api_key=${config.rss2jsonKey}&count=${1000}`;
-    return this.http.get<PodcastFeed>(url).pipe(map(podcast => Podcast.fromRSS(podcast)));
+    const feedUrlTransfo = feedUrl.includes('feeds.feedburner.com') ? feedUrl + '?format=xml' : feedUrl;
+    const url = `https://cors-anywhere.herokuapp.com/${feedUrlTransfo}`;
+    const options = { responseType: 'text' as const, };
+    return this.http.get(url, options).pipe(switchMap(xml => {
+      const feed = xml;
+      const parser = new Parser();
+      const parseString = parser.parseString.bind(parser);
+      return new Observable<Podcast>(observer => {
+        const parseCallback = (result: Parser.Output) => {
+          observer.next(Podcast.fromRSS(result, feedUrl));
+          observer.complete();
+        };
+        parseString(feed, (err: Error, result: Parser.Output) => {
+          parseCallback(result);
+        });
+      });
+    }));
   }
 
   public getPodcastFromDB(feedUrl: string): Observable<Podcast | undefined> {
@@ -74,7 +88,7 @@ export class PodcastService {
   }
 
   public downloadEpisode(podcast: Podcast, episodeIndex: number): Observable<boolean | number> {
-    const url = 'https://cors-anywhere.herokuapp.com/' + podcast.episodes[episodeIndex].enclosure.link;
+    const url = 'https://cors-anywhere.herokuapp.com/' + podcast.episodes[episodeIndex].enclosure.url;
     const options = {
       responseType: 'blob' as 'json',
       reportProgress: true
